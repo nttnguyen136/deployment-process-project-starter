@@ -14,7 +14,6 @@ jobs:
       - checkout:
           path: ~/app
       - node/install:
-          app-dir: ~/app/udagram/udagram-frontend
           node-version: "14.18"
       - run:
           name: Build Frontend
