@@ -42,6 +42,10 @@ jobs:
           command: |
             echo "TODO: Build the frontend app"
             npm run frontend:build
+      - run:
+          name: Deploy FE App
+          command: |
+            npm run frontend:deploy
       # TODO: Build the backend API
       # - run:
       #     name: API Build
@@ -54,11 +58,11 @@ jobs:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
     steps:
-      - node/install:
-          node-version: "14.15"
-      - eb/setup
-      - aws-cli/setup
-      - checkout
+      # - node/install:
+      #     node-version: "14.15"
+      # - eb/setup
+      # - aws-cli/setup
+      # - checkout
       - run:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
