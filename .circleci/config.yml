@@ -15,6 +15,7 @@ jobs:
           path: ~/app
       - node/install-packages:
           app-dir: ~/app/udagram/udagram-frontend
+          node-version: "13.15"
       - run:
           name: Build Frontend
           command: npm run build
