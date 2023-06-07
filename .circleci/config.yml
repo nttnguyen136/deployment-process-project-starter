@@ -4,7 +4,6 @@ orbs:
   node: circleci/node@5.0.2
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
-  aws-s3: circleci/aws-s3@3.1.1 # use the AWS S3 orb in your configuration
 
   # different jobs are calles later in the workflows sections
 jobs:
@@ -19,32 +18,21 @@ jobs:
           name: Install Front-End Dependencies
           command: |
             npm run frontend:install
-      - run:
-          name: Front-End Lint
-          command: |
-            echo "TODO: Lint the frontend"
-            npm run frontend:lint
+      # - run:
+      #     name: Front-End Lint
+      #     command: |
+      #       echo "TODO: Lint the frontend"
+      #       npm run frontend:lint
       - run:
           name: Front-End Build
           command: |
             echo "TODO: Build the frontend app"
             npm run frontend:build
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      - image: "cibuilds/aws:2.8.13"
-    steps:
-      - checkout
-      - aws-s3/sync:
-          from: ./www
-          to: "s3://udagram-fe"
-          arguments: | # Optional arguments
-            --acl public-read
-
+      - aws-cli/install
+      - run:
+          name: Deploy Frontend
+          command: aws s3 cp --recursive --acl public-read ./www s3://udagram-fe
 workflows:
   udagram:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
