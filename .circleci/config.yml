@@ -41,8 +41,8 @@ jobs:
       - run:
           name: Build API
           command: npm run build
-      - aws-cli/install
-      - eb/install
+      # - aws-cli/install
+      - eb/setup
       - run:
           name: Deploy Api
           command: npm run deploy
