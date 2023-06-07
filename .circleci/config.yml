@@ -50,4 +50,4 @@ jobs:
 workflows:
   udagram:
     jobs:
-      - build
+      - api
