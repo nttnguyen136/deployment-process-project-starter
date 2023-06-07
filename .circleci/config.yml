@@ -50,4 +50,5 @@ jobs:
 workflows:
   udagram:
     jobs:
+      - frondend
       - api
