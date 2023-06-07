@@ -42,10 +42,10 @@ jobs:
           command: |
             echo "TODO: Build the frontend app"
             npm run frontend:build
-      - run:
-          name: Deploy FE App
-          command: |
-            aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
+      # - run:
+      #     name: Deploy FE App
+      #     command: |
+      #       aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
 
       # TODO: Build the backend API
       # - run:
