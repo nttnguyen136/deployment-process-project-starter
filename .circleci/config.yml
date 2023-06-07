@@ -8,31 +8,20 @@ orbs:
   # different jobs are calles later in the workflows sections
 jobs:
   build:
-    docker:
-      - image: "cimg/node:14.15"
+    working_directory: ~/app/udagram-frontend
+    executor: node/default
     steps:
-      - node/install:
-          node-version: "14.15"
-      - checkout
+      - checkout:
+          path: ~/app
+      - node/install-packages:
+          app-dir: ~/app/udagram-frontend
       - run:
-          name: Install Front-End Dependencies
-          command: |
-            npm run frontend:install
-      # - run:
-      #     name: Front-End Lint
-      #     command: |
-      #       echo "TODO: Lint the frontend"
-      #       npm run frontend:lint
-      - run:
-          name: Front-End Build
-          command: |
-            echo "TODO: Build the frontend app"
-            npm run frontend:build
+          name: Build Frontend
+          command: npm run build
       - aws-cli/install
       - run:
           name: Deploy Frontend
-          command: npm run frontend:deploy
-          # command: aws s3 cp --recursive --acl public-read ./www s3://udagram-fe
+          command: aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
 workflows:
   udagram:
     jobs:
