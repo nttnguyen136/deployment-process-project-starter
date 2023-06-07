@@ -8,13 +8,13 @@ orbs:
   # different jobs are calles later in the workflows sections
 jobs:
   build:
-    working_directory: ~/app/udagram-frontend
+    working_directory: ~/app/udagram/udagram-frontend
     executor: node/default
     steps:
       - checkout:
           path: ~/app
       - node/install-packages:
-          app-dir: ~/app/udagram-frontend
+          app-dir: ~/app/udagram/udagram-frontend
       - run:
           name: Build Frontend
           command: npm run build
