@@ -73,7 +73,9 @@ jobs:
       - run:
           name: Deploy FE App
           command: |
-            aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
+            npm run frontend:deploy
+            # aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
+
 workflows:
   udagram:
     jobs:
