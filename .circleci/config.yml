@@ -24,7 +24,8 @@ jobs:
       - aws-cli/install
       - run:
           name: Deploy Frontend
-          command: aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
+          command: npm run deploy
+          # command: aws s3 cp --recursive --acl public-read ./www s3://udagram-fe/
 workflows:
   udagram:
     jobs:
