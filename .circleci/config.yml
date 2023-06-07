@@ -7,7 +7,7 @@ orbs:
 
   # different jobs are calles later in the workflows sections
 jobs:
-  build:
+  frondend:
     working_directory: ~/app/udagram/udagram-frontend
     executor: node/default
     steps:
@@ -27,6 +27,26 @@ jobs:
           command: |
             chmod +x ./bin/deploy.sh
             ./bin/deploy.sh
+  api:
+    working_directory: ~/app/udagram/udagram-api
+    executor: node/default
+    steps:
+      - checkout:
+          path: ~/app
+      - node/install:
+          node-version: "14.18"
+      - run:
+          name: Install Package Frontend
+          command: npm install -f
+      - run:
+          name: Build API
+          command: npm run build
+      - aws-cli/install
+      - eb/install
+      - run:
+          name: Deploy Api
+          command: npm run deploy
+
 workflows:
   udagram:
     jobs:
