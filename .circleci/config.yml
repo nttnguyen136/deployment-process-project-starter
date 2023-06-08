@@ -19,10 +19,10 @@ jobs:
           command: npm install -f
       - run:
           name: Linting
-          command: frontend:lint
+          command: npm run lint
       - run:
           name: Test
-          command: frontend:test
+          command: npm run test
       - run:
           name: Build
           command: npm run build
