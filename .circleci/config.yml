@@ -46,10 +46,21 @@ jobs:
       - eb/setup
       - run:
           name: Deploy
-          command: npm run deploy
+          command: |
+            chmod +x ./ci/deploy.sh
+            ./ci/deploy.sh
+            npm run deploy
 
 workflows:
   udagram:
     jobs:
       - frondend
+          filters:
+            branches:
+              only:
+                - master
       - api
+          filters:
+            branches:
+              only:
+                - master
