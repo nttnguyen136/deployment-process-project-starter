@@ -15,14 +15,17 @@ jobs:
       - node/install:
           node-version: "14.18"
       - run:
-          name: Install Package Frontend
+          name: Install Package
           command: npm install -f
       - run:
-          name: Build Frontend
+          name: Linting
+          command: frontend:lint
+      - run:
+          name: Build
           command: npm run build
       - aws-cli/install
       - run:
-          name: Deploy Frontend
+          name: Deploy
           command: |
             chmod +x ./bin/deploy.sh
             ./bin/deploy.sh
@@ -35,14 +38,14 @@ jobs:
       - node/install:
           node-version: "14.18"
       - run:
-          name: Install Package Frontend
+          name: Install Package
           command: npm install -f
       - run:
-          name: Build API
+          name: Build
           command: npm run build
       - eb/setup
       - run:
-          name: Deploy Api
+          name: Deploy
           command: npm run deploy
 
 workflows:
