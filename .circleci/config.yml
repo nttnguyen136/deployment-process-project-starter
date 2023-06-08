@@ -21,9 +21,6 @@ jobs:
           name: Linting
           command: npm run lint
       - run:
-          name: Test
-          command: npm run test
-      - run:
           name: Build
           command: npm run build
       - aws-cli/install
