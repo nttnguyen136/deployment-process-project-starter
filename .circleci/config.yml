@@ -54,12 +54,12 @@ jobs:
 workflows:
   udagram:
     jobs:
-      - frondend
+      - frondend:
           filters:
             branches:
               only:
                 - master
-      - api
+      - api:
           filters:
             branches:
               only:
